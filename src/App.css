@@ -1,0 +1,9 @@
+.App {
+  margin: 30px 20px;
+  max-width: 450px;
+}
+
+.Title {
+  font-size: 1.2em;
+  font-family: Tahoma;
+}

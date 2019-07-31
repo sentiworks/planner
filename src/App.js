@@ -120,13 +120,24 @@ class App extends React.Component {
       console.log("error response: ", error.response.status);
     } else {
       this.setState({errcode: error.message});
-      console.log("error message: ", error.message);
+      console.log("Message: ", error.message);
+      console.log("Config: ", error.config);
+      console.log("Request: ", error.request);
     }
   }
 
   postCloudTask = (task) => {
     if (this.internetConnected()) {
-      Axios.post(`${URL}/api/task`, task)
+      Axios.post(`${URL}/api/task`, task, {
+        auth: {
+          username: process.env.REACT_APP_USER,
+          password: process.env.REACT_APP_PASSWORD
+        }
+      })
+      .then(res => {
+        console.log("config: ", res.config);
+        console.log("request: ", res.request);
+      })
         .catch(error => this.handleError(error))
     }
   }
